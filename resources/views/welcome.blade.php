@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Trip Bay
                 </div>
 
                 <div class="links">
