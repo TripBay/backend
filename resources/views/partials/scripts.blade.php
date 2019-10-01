@@ -1,28 +1,21 @@
-		<!-- *************
-				************ Required JavaScript Files *************
-			************* -->
-		<!-- Required jQuery first, then Bootstrap Bundle JS -->
-		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-		<script src="{{ asset('assets/js/nav.min.js') }}"></script>
-		<script src="{{ asset('assets/js/moment.js') }}"></script>
+<script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('libs/popper.js/dist/umd/popper.min.js') }}"></script>
+<script src="{{ asset('libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- ajax page -->
+<script src="{{ asset('libs/pjax/pjax.min.js') }}"></script>
+<script src="{{ asset('assets/js/ajax.js') }}"></script>
+<!-- lazyload plugin -->
+<script src="{{ asset('assets/js/lazyload.config.js') }}"></script>
+<script src="{{ asset('assets/js/lazyload.js') }}"></script>
+<script src="{{ asset('assets/js/plugin.js') }}"></script>
+<!-- scrollreveal -->
+<script src="{{ asset('libs/scrollreveal/dist/scrollreveal.min.js') }}"></script>
+<!-- feathericon -->
+<script src="{{ asset('libs/feather-icons/dist/feather.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/feathericon.js') }}"></script>
+<!-- theme -->
+<script src="{{ asset('assets/js/theme.js') }}"></script>
+<script src="{{ asset('assets/js/utils.js') }}"></script>
 
-
-		<!-- *************
-				************ Vendor Js Files *************
-			************* -->
-		<!-- Daterange -->
-		<script src="{{ asset('assets/vendor/daterange/daterange.js') }}"></script>
-
-		<!-- Apex Charts -->
-		@if(Request::routeIs('dashboard'))
-		<script src="{{ asset('assets/vendor/apex/apexcharts.min.js') }}"></script>
-		<script src="{{ asset('assets/vendor/apex/custom/apexLineChartGradient.js') }}"></script>
-		<script src="{{ asset('assets/vendor/apex/custom/apexColumnBasic.js') }}"></script>
-		<script src="{{ asset('assets/vendor/apex/custom/apexAllCustomGraphs.js') }}"></script>
-		@endif
-
-		<!-- Main Js Required -->
-		<script src="{{ asset('assets/js/main.js') }}"></script>
-
-		@stack('additionalJS')
+@stack('additionalJS')

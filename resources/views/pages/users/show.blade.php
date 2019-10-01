@@ -1,131 +1,100 @@
 @extends('layouts.master')
 
-@include('pages.partial-pages.circliful')
-
 @section('content')
-<div class="page-title">
-    <div class="row gutters">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-            <h5 class="title">User Profile</h5>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><i class="icon-area-graph"></i></a></li>
-                    <li class="breadcrumb-item"><a href="/backend/">Dashboard</a></li>
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('users.index') }}">Users</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                </ol>
-            </nav>
-        </div>
+<div class="d-flex flex fixed-content">
+    <div class="fade aside aside-sm" id="content-aside">
+        @include('pages.users.partials-modal.modal')
     </div>
-</div>
-<!-- Page header end -->
-
-
-<!-- Content wrapper start -->
-<div class="content-wrapper">
-
-
-    <!-- Row start -->
-    <div class="row gutters">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            
-            <!-- BEGIN .Custom-header -->
-            <header class="custom-banner">
-                <div class="row gutters">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                        <div class="welcome-msg">
-                            <div class="welcome-user-thumb">
-                                <img src="{{ asset('assets/img/user.png') }}" alt='Retail Admin' />
-                            </div>
-                            <div class="welcome-title">
-                                {{ ucfirst($user->name) }}
-                            </div>
-                            <div class="welcome-designation">
-                                {{ ucfirst($user->role) }}
-                            </div>
-                            <div class="welcome-email">
-                                {{ $user->email }}
-                            </div>
-                            {{-- <a href="dashboard2.html" class="btn btn-danger btn-sm">Request</a> --}}
+    <div class="d-flex flex" id="content-body">
+        <div class="d-flex flex-column flex" data-plugin="user">
+            <div class="p-3">
+                <div class="toolbar">
+                    <a href="{{ route('users.index') }}" class="btn btn-sm btn-white">
+                        <i data-feather="arrow-left"></i>
+                    </a>
+                    <button class="btn btn-sm no-bg ml-auto">
+                        <i data-feather="edit-2"></i>
+                    </button>
+                    <button data-toggle="modal" data-target="#content-aside" data-modal class="btn btn-sm btn-white d-md-none">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-y mx-3 mb-3 card">
+                <div class="p-4 d-sm-flex no-shrink b-b">
+                    <div>
+                        <a href="#" class="avatar w-96">
+                            <img src="../assets/img/a5.jpg" alt=".">
+                        </a>
+                    </div>
+                    <div class="px-sm-4 my-3 my-sm-0 flex">
+                        <h2 class="text-md">{{ ucfirst($user->name) }}</h2>
+                        <small class="d-block text-fade">Senior Industrial Designer</small>
+                        <div class="my-3">
+                            <a href="#">
+                                <strong>561</strong> <span class="text-muted">Posts</span>
+                            </a>
+                            <a href="#" class="mx-2">
+                                <strong>4,000</strong> <span class="text-muted">Followers</span>
+                            </a>
+                            <a href="#">
+                                <strong>500</strong> <span class="text-muted">Following</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                        <div class="row gutters user-plans justify-content-center">
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div id="tasks"></div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div id="trainings"></div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                                <div id="friends"></div>
+                    <div>
+                        <a href="#" class="btn btn-icon btn-rounded">
+                            <i data-feather="mail"></i>
+                        </a>
+                        <a href="#" class="btn btn-icon btn-rounded">
+                            <i data-feather="more-vertical"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-12 b-r">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="px-2">
+                                        <div class="py-3">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link">
+                                                        <span>{{ $user->profile->address ?? 'California' }}</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link">
+                                                        <span>{{ $user->email }}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="px-4 py-4">
+                                        <div class="row mb-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">Cell Phone</small>
+                                                <div class="my-2">1243 0303 0333</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Family Phone</small>
+                                                <div class="my-2">+32(0) 3003 234 543</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted">Bio</small>
+                                            <div class="my-2">{{ $user->profile->about }}</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </header>
-            <!-- END: .Custom-header -->
-
+            </div>
         </div>
     </div>
-    <!-- Row end -->
-
-
-    <!-- ************************** Visitors and Revenue ************************** -->
-    <!-- Row start -->
-    <div class="row gutters justify-content-center">
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-            
-            <div class="daily-sales">
-                <div class="activity-icon blue">
-                    <i class="icon-heart"></i>
-                </div>
-                <h6>Hotel listings</h6>
-                <h1>5</h1>
-            </div>
-
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-            
-            <div class="daily-sales">
-                <div class="activity-icon yellow">
-                    <i class="icon-pencil"></i>
-                </div>
-                <h6>Reviews</h6>
-                <h1>1.9m</h1>
-                <p>Customer reviewed</p>
-            </div>
-
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-            
-            <div class="daily-sales">
-                <div class="activity-icon pink">
-                    <i class="icon-star-outlined"></i>
-                </div>
-                <h6>Rating</h6>
-                <h1>8.9/10</h1>
-                <p>Stars rated</p>
-            </div>
-
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-            
-            <div class="daily-sales">
-                <div class="activity-icon violet">
-                    <i class="icon-user-check"></i>
-                </div>
-                <h6>Customers</h6>
-                <h1>22k +</h1>
-                <p>Books Completed</p>
-            </div>
-
-        </div>
-    </div>
-    <!-- Row end -->
-
-
 </div>
 @endsection

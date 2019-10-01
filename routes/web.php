@@ -13,7 +13,7 @@ Route::group( ['prefix' => 'backend', 'middleware' => 'auth'], function() {
     Route::get('/', function () {
         return view('pages.dashboard');
     })->name('dashboard');
-
-    Route::resource('users', 'UsersController')->except(['create', 'store', 'delete']);
-
+    
+    Route::resource('users', 'UsersController');
+    Route::resource('profile', 'ProfilesController')->only(['show', 'edit', 'update']);
 });

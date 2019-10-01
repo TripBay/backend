@@ -1,40 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    @include('partials.head')
-	<body>
 
-		<!-- Loading starts -->
-		@if(Request::routeIs('dashboard'))
-			<div id="loading-wrapper">
-				<div class="spinner-border text-apex-green" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
-			</div>
-		@endif
-		<!-- Loading ends -->
+	@include('partials.head')
 
-		<div class="container">
-
-			<!-- Header start -->
-			@include('partials.header')
-			<!-- Header end -->
-
-			<!-- Navigation start -->
-			@include('partials.nav')
-			<!-- Navigation end -->
-			<!-- *************
-				************ Main container start *************
-				************* -->
-			<div class="main-container">
-
+    <body class="layout-row">
+        <!-- ############ Aside START-->
+        @include('partials.sidebar')
+        <!-- ############ Aside END-->
+        <div id="main" class="layout-column flex">
+            <!-- ############ Header START-->
+            @include('partials.header')
+            <!-- ############ Footer END-->
+            <!-- ############ Content START-->
+            <div id="content" class="flex ">
+                <!-- ############ Main START-->
                 @yield('content')
-
+                <!-- ############ Main END-->
             </div>
-            
-		</div>
+			<!-- ############ Content END-->
+			
+			<!-- ############ Footer START-->
+			@include('partials.footer')
+			<!-- ############ Footer END-->
 
+        </div>
+        <!-- build:js ../assets/js/site.min.js -->
+        <!-- jQuery -->
         @include('partials.scripts')
-
-	</body>
-
+        <!-- endbuild -->
+    </body>
 </html>
