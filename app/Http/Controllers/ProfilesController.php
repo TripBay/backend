@@ -7,16 +7,17 @@ use App\Profile;
 
 class ProfilesController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function index()
     {
-        return view('pages.profile.show', compact('profile'));
+        $user = auth()->user();
+
+        return view('pages.profile.index', compact('user'));
     }
 
     /**

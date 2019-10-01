@@ -87,7 +87,7 @@
                                     <a href="app.user.detail.html#5">
                                         <span class="w-40 avatar gd-warning" data-toggle-class="loading">
                                             <span class="avatar-status on b-white avatar-right"></span>
-                                        <img src="../assets/img/a5.jpg" alt=".">
+                                        <img src="{{ asset('assets/img/a5.jpg') }}" alt=".">
                                         </span>
                                     </a>
                                 </div>

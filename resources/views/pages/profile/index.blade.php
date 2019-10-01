@@ -14,7 +14,7 @@
     <div class="page-content page-container" id="page-content">
         <div class="padding sr">
             <div class="card">
-                <div class="card-header bg-dark bg-img p-0 no-border" data-stellar-background-ratio="0.1" style="background-image:url(../assets/img/b1.jpg);" data-plugin="stellar">
+                <div class="card-header bg-dark bg-img p-0 no-border" data-stellar-background-ratio="0.1" style="background-image:url(/assets/img/b1.jpg);" data-plugin="stellar">
                     <div class="bg-dark-overlay r-2x no-r-b">
                         <div class="d-md-flex">
                             <div class="p-4">
@@ -26,7 +26,7 @@
                                         </span>
                                     </a>
                                     <div class="mx-3">
-                                        <h5 class="mt-2">{{ $profile->user->name }}</h5>
+                                        <h5 class="mt-2">{{ $user->name }}</h5>
                                         <div class="text-fade text-sm"><span class="m-r">Senior Industrial Designer</span>
                                             <small>
                                                 <i class="fa fa-map-marker mr-2"></i>London, UK
@@ -38,7 +38,7 @@
                             <span class="flex"></span>
                             <div class="align-items-center d-flex p-4">
                                 <div class="toolbar">
-                                    <a href="{{ route('profile.edit',$profile->id) }}" class="btn btn-sm bg-dark-overlay btn-rounded text-white bg-success active">
+                                    <a href="{{ route('profile.edit',$user->id) }}" class="btn btn-sm bg-dark-overlay btn-rounded text-white bg-success active">
                                         <span class="d-none">Settings</span>
                                     </a>
                                     <a href="#" class="btn btn-sm btn-icon bg-dark-overlay btn-rounded">

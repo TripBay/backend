@@ -121,7 +121,7 @@
                                 <div>
                                     <a href="music.detail.html">
                                         <span class="w-32 avatar gd-primary">
-                        <img src="../assets/img/a1.jpg" alt=".">
+                        <img src="{{ asset('assets/img/a1.jpg') }}" alt=".">
                 </span>
                                     </a>
                                 </div>
@@ -150,7 +150,7 @@
                                 <div>
                                     <a href="music.detail.html">
                                         <span class="w-32 avatar gd-warning">
-                        <img src="../assets/img/a5.jpg" alt=".">
+                        <img src="{{ asset('assets/img/a5.jpg') }}" alt=".">
                 </span>
                                     </a>
                                 </div>
@@ -165,7 +165,7 @@
                                 <div>
                                     <a href="music.detail.html">
                                         <span class="w-32 avatar gd-primary">
-                        <img src="../assets/img/a7.jpg" alt=".">
+                        <img src="{{ asset('assets/img/a7.jpg') }}" alt=".">
                 </span>
                                     </a>
                                 </div>
@@ -217,7 +217,7 @@
                         <span>to Deluxe</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('profile.show',auth()->user()->profile->id) }}">
+                    <a class="dropdown-item" href="{{ route('profile.index') }}">
                         <span>Profile</span>
                     </a>
                     <a class="dropdown-item" href="page.faq.html">Need help?</a>

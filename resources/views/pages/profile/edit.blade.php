@@ -5,7 +5,7 @@
     <div class="page-hero page-container " id="page-hero">
         <div class="p-3">
             <div class="toolbar">
-                <a href="{{ route('profile.show',$profile->id) }}" class="btn btn-sm btn-white">
+                <a href="{{ route('profile.index') }}" class="btn btn-sm btn-white">
                     <i data-feather="arrow-left"></i>
                 </a>
             </div>

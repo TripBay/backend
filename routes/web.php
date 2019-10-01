@@ -15,5 +15,5 @@ Route::group( ['prefix' => 'backend', 'middleware' => 'auth'], function() {
     })->name('dashboard');
     
     Route::resource('users', 'UsersController');
-    Route::resource('profile', 'ProfilesController')->only(['show', 'edit', 'update']);
+    Route::resource('profile', 'ProfilesController')->only(['index', 'edit', 'update']);
 });
