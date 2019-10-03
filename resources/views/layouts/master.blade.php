@@ -25,7 +25,6 @@
                 <!-- ############ Footer START-->
                 @include('partials.footer')
                 <!-- ############ Footer END-->
-
             </div>
         @endif
         <!-- build:js ../assets/js/site.min.js -->

@@ -85,6 +85,30 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="nav ">
+                    <li class="nav-header hidden-folded">
+                        <span class="text-muted">Extra</span>
+                    </li>
+                    <li>
+                        <a href="#" class="">
+                            <span class="nav-icon w-32 circle pink"><i data-feather='help-circle'></i></span>
+                            <span class="nav-text">Faq</span>
+                            <span class="nav-caret"></span>
+                        </a>
+                        <ul class="nav-sub nav-mega">
+                            <li>
+                                <a href="{{ route('faqs.index') }}" class="">
+                                    <span class="nav-text">All Faqs</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faqs.create') }}" class="">
+                                    <span class="nav-text">Add new</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- sidenav bottom -->

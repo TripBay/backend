@@ -16,9 +16,10 @@
             <div class="mb-5">
                 <div class="toolbar ">
                     <div class="btn-group">
-                        {{-- <button class="btn btn-sm btn-icon btn-white" data-toggle="tooltip" title="Trash" id="btn-trash">
-                            <i data-feather="trash" class="text-muted"></i>
-                        </button> --}}
+                        <a class="btn btn-sm btn-icon btn-white" href="{{ route('roles.create') }}">
+                            {{-- <i class="text-muted"></i> --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </a>
                         <button class="btn btn-sm btn-icon btn-white sort " data-sort="item-title" data-toggle="tooltip" title="Sort">
                             <i class="sorting"></i>
                         </button>
@@ -46,6 +47,7 @@
                                 </th>
                                 <th class="text-muted">ID</th>
                                 <th class="text-muted sortable" data-toggle-class="asc">Role Name</th>
+                                <th class="text-muted" data-toggle-class="asc">No. Users assigned</th>
                                 <th style="width:50px;"></th>
                             </tr>
                         </thead>
@@ -62,21 +64,24 @@
                                         {{ $role->id }}
                                     </td>
                                     <td>{{ $role->name }}</td>
+                                    <td>{{ $role->users->count() }}</td>
                                     <td>
                                         <div class="item-action dropdown">
                                             <a href="#" data-toggle="dropdown" class="text-muted">
                                                 <i data-feather="more-vertical"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right bg-black" role="menu">
-                                                <a class="dropdown-item" href="#">
-                                                    See detail
-                                                </a>
-                                                <a class="dropdown-item download">
-                                                    Download
-                                                </a>
                                                 <a class="dropdown-item edit">
                                                     Edit
                                                 </a>
+                                                <div class="dropdown-divider"></div>
+                                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" {{ $loop->first ? 'disabled' : '' }} class="dropdown-item trash" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                        Delete item
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>

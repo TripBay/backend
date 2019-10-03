@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
+use App\Faq;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class FaqController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::get();
+        $faqs = Faq::get();
 
-        return view('pages.roles.index', compact('roles'));
+        return view('pages.faqs.index', compact('faqs'));
     }
 
     /**
@@ -26,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('pages.roles.create');
+        return view('pages.faqs.create');
     }
 
     /**
@@ -38,62 +38,66 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|min:2|unique:roles'
+            'title'     =>  'required|min:5|max:80',
+            'body'      =>  'required|min:2'
         ]);
 
-        Role::create($data);
-        return redirect()->back();
+        Faq::create($data);
+
+        return redirect()->route('faqs.index')->withSuccess('Successfully created!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Faq $faq)
     {
-        //
+        return view('pages.faqs.edit', compact('faq'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Faq $faq)
     {
-        //
+        return view('pages.faqs.edit', compact('faq'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Role  $role
+     * @param  \App\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Faq $faq)
     {
-        //
+        $data = $request->validate([
+            'title' =>  'required|min:5|max:80',
+            'body'  =>  'required|min:2'
+        ]);
+
+        $faq->update($data);
+
+        return redirect()->route('faqs.index')->withSuccess('Successfully updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Faq $faq)
     {
-        if($role->users->count() == 0){
-            $role->id === 1 ? '' : $role->delete();
-        }else{
-            // return redirect()->route('roles.index')->withError('Can\'t delete role with a user assigned!');
-            return response()->json('Can\'t delete role with a user assigned!');
-        }
-        
-        return redirect()->route('roles.index')->withSuccess('Successfully deleted!');
+        $faq->delete();
+
+        return redirect()->route('faqs.index');
     }
 }
