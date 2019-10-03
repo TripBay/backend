@@ -18,6 +18,4 @@
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/utils.js') }}"></script>
 
-{{-- <script src="{{ asset('libs/typehead.js/dist/typehead.bundle.min.js') }}"></script> --}}
-
 @stack('additionalJS')

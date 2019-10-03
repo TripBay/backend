@@ -18,11 +18,17 @@ class CreateProfilesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('about')->default('Say something about your self!');
             $table->string('address')->nullable();
-            $table->string('image')->default('avatar.png');
+            $table->string('image')->default('image.jpeg');
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        DB::table('profiles')->insert([
+            'user_id' => 1,
+            'created_at' =>  \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
     }
 
     /**

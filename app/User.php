@@ -8,10 +8,23 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    const ADMIN_TYPE = 1; //admin
+    const DEFAULT_TYPE = 2; //user
     use Notifiable;
 
-    public function profile(){
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
+    }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
     public static function boot(){
@@ -22,6 +35,11 @@ class User extends Authenticatable
                 'about' => 'Say something about yourself '.$user->name. '',
             ]);
         });
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id === self::ADMIN_TYPE;
     }
 
     /**
@@ -50,9 +68,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function account()
-    {
-        return $this->hasOne(Account::class);
-    }
 }

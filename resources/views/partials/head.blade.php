@@ -9,5 +9,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
     <!-- endbuild -->
+    
     @stack('additionalCSS')
 </head>

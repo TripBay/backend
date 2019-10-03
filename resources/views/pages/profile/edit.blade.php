@@ -27,37 +27,58 @@
                     <div class="d-flex align-items-center px-4 py-3 pointer" data-toggle="collapse" data-parent="#accordion" data-target="#c_1">
                         <div>
                             <span class="w-48 avatar circle bg-info-lt" data-toggle-class="loading">
-                                <img src="{{ asset('assets/img/a9.jpg') }}" alt=".">
+                                <img src="/storage/{{ $user->profile->avatar }}" alt=".">
                             </span>
                         </div>
                         <div class="mx-3 d-none d-md-block">
-                            <strong>{{ $profile->user->name }}</strong>
-                            <div class="text-sm text-muted">jacqueline@company.co</div>
+                            <strong>{{ $user->name }}</strong>
+                            <div class="text-sm text-muted">{{ $user->email }}</div>
                         </div>
                         <div class="flex"></div>
                         <div class="mx-3">
                             <i data-feather="chevron-right"></i>
                         </div>
                         <div>
-                            <a href="signin.html" class="text-prmary text-sm">Sign Out</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+    
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
-                    <div class="collapse p-4" id="c_1">
-                        <form role="form">
+                    <div class="{{ $errors->has('name') || $errors->has('image')  ? '' : 'collapse' }} p-4" id="c_1">
+                        <form role="form" action="{{ route('profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Profile picture</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <input type="file" class="custom-file-input" id="customFile" name="image">
+                                    <label class="custom-file-label @error('image') is-invalid @enderror" for="customFile">Choose file</label>
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <button type="submit" name="action" value="profile" class="btn btn-primary mt-2">Update</button>
                         </form>
                     </div>
+                    
                     <div class="d-flex align-items-center px-4 py-3 b-t pointer" data-toggle="collapse" data-parent="#accordion" data-target="#c_2">
                         <i data-feather="lock"></i>
                         <div class="px-3">
@@ -68,19 +89,19 @@
                             <i data-feather="chevron-right"></i>
                         </div>
                     </div>
-                    <div class="collapse p-4" id="c_2">
+                    <div class="{{ $errors->has('password')  ? '' : 'collapse' }} p-4" id="c_2">
                         <form role="form">
                             <div class="form-group">
                                 <label>Old Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" name="old_password">
                             </div>
                             <div class="form-group">
                                 <label>New Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" name="new_password">
                             </div>
                             <div class="form-group">
                                 <label>New Password Again</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" name="new_password_confirmation">
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Update</button>
                         </form>

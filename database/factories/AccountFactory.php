@@ -8,9 +8,9 @@ use Faker\Generator as Faker;
 $factory->define(Account::class, function (Faker $faker) {
     return [
         'user_id' => function() {
-            return factory(App\User::class)->create()->id;
+            return App\User::first()->id ? : factory(App\User::class)->create()->id;
         },
-        'name' => $faker->name,
+        'name' => $faker->catchPhrase,
         'location' => $faker->address,
         'dest_tag' => $faker->sentence,
 

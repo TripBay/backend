@@ -11,9 +11,9 @@
             <div class="p-3">
                 <div class="toolbar ">
                     <div class="btn-group">
-                        <button class="btn btn-sm btn-icon btn-white" data-toggle="tooltip" title="Trash" id="btn-trash">
+                        {{-- <button class="btn btn-sm btn-icon btn-white" data-toggle="tooltip" title="Trash" id="btn-trash">
                             <i data-feather="trash" class="text-muted"></i>
-                        </button>
+                        </button> --}}
                         <button class="btn btn-sm btn-icon btn-white sort " data-sort="item-author" data-toggle="tooltip" title="Sort">
                             <i class="sorting"></i>
                         </button>
@@ -84,10 +84,10 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="app.user.detail.html#5">
-                                        <span class="w-40 avatar gd-warning" data-toggle-class="loading">
+                                    <a href="{{ route('users.show', $user->id) }}">
+                                        <span class="w-40 avatar" data-toggle-class="loading">
                                             <span class="avatar-status on b-white avatar-right"></span>
-                                        <img src="{{ asset('assets/img/a5.jpg') }}" alt=".">
+                                        <img src="/storage/{{ $user->profile->avatar }}" alt=".">
                                         </span>
                                     </a>
                                 </div>
@@ -97,7 +97,7 @@
                                         {{ $user->email }}
                                     </div>
                                     <div class="item-tag tag hide">
-                                        Clients,Company,Friends,Suppliers,Work,Team,Partners,Personal
+                                        {{ $user->role->name ?? '' }}
                                     </div>
                                 </div>
                                 <div>
@@ -114,10 +114,6 @@
                                             </a>
                                             <a class="dropdown-item edit">
                                                 Edit
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item trash">
-                                                Delete item
                                             </a>
                                         </div>
                                     </div>

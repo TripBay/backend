@@ -3,7 +3,7 @@
         <span class="text-md mx-2">Groups</span>
         <div class="dropdown dropright">
             <button data-toggle="dropdown" class="btn btn-sm btn-icon no-bg no-shadow">
-                <i data-feather="plus"></i>
+                {{-- <i data-feather="plus"></i> --}}
             </button>
             <div class="dropdown-menu w-lg">
                 <div class="p-3">
@@ -25,6 +25,7 @@
                 <ul class="nav">
                     @php
                         $users = App\User::get();
+                        $roles = App\Role::get();
                     @endphp
                     <li>
                         <a href="{{ route('users.index') }}#all">
@@ -34,24 +35,16 @@
                             </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#company">
-                            <span class="nav-text">Company</span>
-                            <span class="nav-badge">
-                            <b class="badge badge-sm badge-pill gd-info">3</b>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#personal">
-                            <span class="nav-text">Personal</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#team">
-                            <span class="nav-text">Team</span>
-                        </a>
-                    </li>
+                    @foreach ($roles as $role)
+                        <li>
+                            <a href="{{ route('users.index') }}#{{ lcfirst($role->name) }}">
+                                <span class="nav-text">{{ $role->name }}</span>
+                                <span class="nav-badge">
+                                <b class="badge badge-sm badge-pill {{ $loop->first ? 'gd-info' : 'gd-warning' }}">{{ $role->users->count() > 0 ? $role->users->count() : '' }}</b>
+                                </span>
+                            </a>
+                        </li>
+                    @endforeach
                     <li class="nav-header hidden-folded mt-2">
                         <span class="d-block pt-1 text-sm text-muted">Tags</span>
                     </li>
