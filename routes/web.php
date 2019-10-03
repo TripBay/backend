@@ -21,4 +21,8 @@ Route::group( ['prefix' => 'backend', 'middleware' => ['auth', 'is_admin']], fun
     Route::resource('articles', 'ArticleController');
     Route::resource('accounts', 'AccountsController');
     Route::resource('profile', 'ProfilesController')->only(['index', 'edit', 'update'])->parameters(['profile' => 'user']);
+
+    Route::get('pricing', function(){
+        return view('pages.pricing.index');
+    })->name('pricing');
 });

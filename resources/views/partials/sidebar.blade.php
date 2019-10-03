@@ -61,8 +61,8 @@
                     </li>
                     <li>
                         <a href="#" class="">
-                            <span class="nav-icon"><i data-feather='rss'></i></span>
-                            <span class="nav-text">Articles</span>
+                            <span class="nav-icon w-32 circle light-blue"><i data-feather='rss'></i></span>
+                            <span class="nav-text">Blog & Articles</span>
                             <span class="nav-caret"></span>
                         </a>
                         <ul class="nav-sub nav-mega">
@@ -77,6 +77,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('pricing') }}">
+                            <span class="nav-icon w-32 circle yellow"><i data-feather='dollar-sign'></i></span>
+                            <span class="nav-text">Pricing</span>
+                        </a>
                     </li>
                 </ul>
             </div>
