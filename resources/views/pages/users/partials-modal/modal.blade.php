@@ -45,7 +45,7 @@
                             </a>
                         </li>
                     @endforeach
-                    <li class="nav-header hidden-folded mt-2">
+                    {{-- <li class="nav-header hidden-folded mt-2">
                         <span class="d-block pt-1 text-sm text-muted">Tags</span>
                     </li>
                     <li>
@@ -79,7 +79,7 @@
                             </span>
                             <span class="nav-text">Corps</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
         </div>
