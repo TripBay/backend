@@ -58,11 +58,6 @@ class ProfilesController extends Controller
 
             if($request->image){
                 
-                $uploads = storage_path('app/public/uploads');
-                $avatar = storage_path('app/public/uploads');
-                File::isDirectory($uploads) or File::makeDirectory($uploads, 0777, true, true);
-                File::isDirectory($avatar) or File::makeDirectory($avatar, 0777, true, true);
-
                 if($this->checkImage($user->profile->image)){
                     File::delete(storage_path('app/public/'. $user->profile->image));
                 }
