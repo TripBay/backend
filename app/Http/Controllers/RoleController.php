@@ -88,6 +88,8 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         if($role->users->count() == 0){
+            //if no associated users, proceed to delete.
+            // but check first if role is not Admin.
             $role->id === 1 ? '' : $role->delete();
         }else{
             // return redirect()->route('roles.index')->withError('Can\'t delete role with a user assigned!');
