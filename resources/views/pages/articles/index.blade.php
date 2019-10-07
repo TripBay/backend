@@ -58,9 +58,6 @@
                                             <a class="dropdown-item" href="#">
                                                 See detail
                                             </a>
-                                            <a class="dropdown-item download">
-                                                Download
-                                            </a>
                                             <a class="dropdown-item edit">
                                                 Edit
                                             </a>

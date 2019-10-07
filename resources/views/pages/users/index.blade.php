@@ -106,11 +106,8 @@
                                             <i data-feather="more-vertical"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right bg-black" role="menu">
-                                            <a class="dropdown-item" href="#">
+                                            <a class="#" href="#">
                                                 See detail
-                                            </a>
-                                            <a class="dropdown-item download">
-                                                Download
                                             </a>
                                             <a class="dropdown-item edit">
                                                 Edit

@@ -1,6 +1,6 @@
 <div class="modal-dialog d-flex flex-column w-md bg-body" id="user-nav">
     <div class="navbar">
-        <span class="text-md mx-2">Groups</span>
+        <span class="text-md mx-2">Roles</span>
         <div class="dropdown dropright">
             <button data-toggle="dropdown" class="btn btn-sm btn-icon no-bg no-shadow">
                 {{-- <i data-feather="plus"></i> --}}

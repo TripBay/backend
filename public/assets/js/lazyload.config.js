@@ -128,6 +128,13 @@ var MODULE_CONFIG = {
                       '/libs/summernote/dist/summernote.min.js',
                       '/libs/summernote/dist/summernote-bs4.min.js'
                     ],
+    editor:     [
+                      '/libs/summernote/dist/summernote.css',
+                      '/libs/summernote/dist/summernote-bs4.css',
+                      '/libs/summernote/dist/summernote.min.js',
+                      '/libs/summernote/dist/summernote-bs4.min.js',
+                      '/libs/summernote/dist/editor.js'
+                    ],
     vectorMap:      [
                       '/libs/jqvmap/dist/jqvmap.min.css',
                       '/libs/jqvmap/dist/jquery.vmap.js',

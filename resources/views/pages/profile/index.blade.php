@@ -224,7 +224,7 @@
         <div class="page-hero page-container " id="page-hero">
             <div class="padding d-flex">
                 <div class="page-title">
-                    <h2 class="text-md text-highlight">Listed Hotes</h2>
+                    <h2 class="text-md text-highlight">Listed Hotels</h2>
                     <small class="text-muted">Hotels below are for demo purposes only</small>
                 </div>
                 <div class="flex"></div>

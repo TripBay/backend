@@ -5,7 +5,7 @@
     <div class="page-hero page-container " id="page-hero">
         <div class="padding d-flex">
             <div class="page-title">
-                <h2 class="text-md text-highlight">Style</h2>
+                <h2 class="text-md text-highlight">Roles</h2>
                 <small class="text-muted">Format data into a table</small>
             </div>
             <div class="flex"></div>

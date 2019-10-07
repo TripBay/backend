@@ -39,7 +39,6 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'title'             =>  'required|min:4|max:50',
             'body'              =>  'required|min:4',

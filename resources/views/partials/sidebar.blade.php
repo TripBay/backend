@@ -84,6 +84,12 @@
                             <span class="nav-text">Pricing</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('pricing') }}">
+                            <span class="nav-icon w-32 circle deep-purple"><i data-feather='tag'></i></span>
+                            <span class="nav-text">Discounts</span>
+                        </a>
+                    </li>
                 </ul>
                 <ul class="nav ">
                     <li class="nav-header hidden-folded">

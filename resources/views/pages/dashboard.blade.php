@@ -7,16 +7,10 @@
                 <div class="page-title">
                     <h2 class="text-md text-highlight">Dashboard</h2>
                     <small class="text-muted">Welcome aboard,
-                            <strong>Jacqueline Reid</strong>
+                            <strong>{{ auth()->user()->name }}</strong>
                         </small>
                 </div>
                 <div class="flex"></div>
-                <div>
-                    <a href="https://themeforest.net/item/basik-responsive-bootstrap-web-admin-template/23365964" class="btn btn-md text-muted">
-                        <span class="d-none d-sm-inline mx-1">Buy this Item</span>
-                        <i data-feather="arrow-right"></i>
-                    </a>
-                </div>
             </div>
         </div>
         <div class="page-content page-container" id="page-content">
