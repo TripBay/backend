@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserProfile;
 use App\Profile;
 use App\User;
 
@@ -40,27 +41,33 @@ class ProfilesController extends Controller
      * @param  int  Profile $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    protected $syncRelatedModels = [
+        'profile'   =>  'updateProfileImage',
+        'details'   =>  'updateProfileDetails'
+    ];
+
+    public function update(UpdateUserProfile $request, User $user)
     {
 
-        if($request->get('action') == 'profile')
+        foreach($this->syncRelatedModels as $index => $syncRelatedModel)
         {
-            $request->validate([
-                'name'          =>  'sometimes|min:5',
-                'image'         =>  'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=255,max_width=1000'
-            ]);
-
-            $user->updateProfileImage($request);
-            return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
-
-        }elseif($request->get('action') == 'details')
-        {
-            $request->validate([
-                'address'   =>  'required|min:5|max:191',
-                'about'     =>  'required|min:5'
-            ]);
-            $user->updateProfileDetails($request);
-            return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
+            $request->validated();
+            
+            if($request->get('action') == $index)
+            {
+                $user->$syncRelatedModel($request);
+                return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
+            }
         }
+        // if($request->get('action') == 'profile')
+        // {
+        //     $user->updateProfileImage($request);
+        //     return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
+
+        // }elseif($request->get('action') == 'details')
+        // {
+        //     $user->updateProfileDetails($request);
+        //     return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
+        // }
     }
 }
