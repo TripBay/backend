@@ -27,7 +27,7 @@
                     <div class="d-flex align-items-center px-4 py-3 pointer" data-toggle="collapse" data-parent="#accordion" data-target="#c_1">
                         <div>
                             <span class="w-48 avatar circle bg-info-lt" data-toggle-class="loading">
-                                <img src="/storage/{{ $user->profile->avatar }}" alt=".">
+                                <img src="{{ $user->profile->avatar }}" alt=".">
                             </span>
                         </div>
                         <div class="mx-3 d-none d-md-block">

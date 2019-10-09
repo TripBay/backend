@@ -21,7 +21,7 @@
                                 <div class="d-flex">
                                     <a href="#">
                                         <span class="avatar w-64">
-                                            <img src="/storage/{{ $user->profile->image }}" alt=".">
+                                            <img src="{{ $user->profile->image }}" alt=".">
                                             <i class="on"></i>
                                         </span>
                                     </a>

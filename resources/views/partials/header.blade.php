@@ -206,7 +206,7 @@
             <!-- User dropdown menu -->
             <li class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link d-flex align-items-center px-2 text-color">
-                    <span class="avatar w-24" style="margin: -2px;"><img src="/storage/{{ auth()->user()->profile->avatar }}" alt="..."></span>
+                    <span class="avatar w-24" style="margin: -2px;"><img src="{{ auth()->user()->profile->avatar }}" alt="..."></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right w mt-3 animate fadeIn">
                     <a class="dropdown-item" href="page.profile.html">

@@ -45,41 +45,6 @@
                             </a>
                         </li>
                     @endforeach
-                    {{-- <li class="nav-header hidden-folded mt-2">
-                        <span class="d-block pt-1 text-sm text-muted">Tags</span>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#client">
-                            <span class="mx-2">
-                            <b class="badge badge-circle sm text-primary"></b>
-                            </span>
-                            <span class="nav-text">Clients</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#supplier">
-                            <span class="mx-2">
-                            <b class="badge badge-circle sm text-info"></b>
-                            </span>
-                            <span class="nav-text">Suppliers</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#competitor">
-                            <span class="mx-2">
-                            <b class="badge badge-circle sm text-success"></b>
-                            </span>
-                            <span class="nav-text">Competitors</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('users.index') }}#corp">
-                            <span class="mx-2">
-                            <b class="badge badge-circle sm text-warning"></b>
-                            </span>
-                            <span class="nav-text">Corps</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </nav>
         </div>

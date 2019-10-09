@@ -52,8 +52,8 @@ class ArticleController extends Controller
 
         Article::create(array_merge(
             $request->except('_token', 'featured_image'),
-            ['featured_image' => $featured_image],
-            ['thumbnail' => $image]
+            // ['featured_image' => $featured_image],
+            // ['thumbnail' => $image]
         ));
         return redirect()->route('articles.index');
     }

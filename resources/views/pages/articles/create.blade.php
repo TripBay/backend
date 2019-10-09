@@ -24,7 +24,7 @@
                                     <div class="col-12">
                                         <label class="col-sm-4 col-form-label">Body</label>
                                         <div class="mb-3 card">
-                                        <textarea name="body" id="editor" class="editor" data-plugin="editor"></textarea>
+                                        <textarea name="body" id="editor" class="editor form-control" data-plugin="editor"></textarea>
 
                                         {{-- <div data-plugin="summernote" data-option="{height:300}"></div> --}}
                                         </div>

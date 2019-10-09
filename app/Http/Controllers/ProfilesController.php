@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Traits\UploadTrait;
 use App\Profile;
 use App\User;
 use File;
 
 class ProfilesController extends Controller
 {
+    use UploadTrait;
     /**
      * Display the specified resource.
      *
@@ -33,10 +35,6 @@ class ProfilesController extends Controller
     {
         return view('pages.profile.edit', compact('user'));
     }
-    public function checkImage($image)
-    {
-        return Profile::exists(storage_path('app/public/'.$image));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -47,6 +45,7 @@ class ProfilesController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         if($request->get('action') == 'profile')
         {
             $request->validate([
@@ -57,23 +56,15 @@ class ProfilesController extends Controller
             $img_arr = [];
 
             if($request->image){
-                
-                if($this->checkImage($user->profile->image)){
-                    File::delete(storage_path('app/public/'. $user->profile->image));
-                }
-                $image = $request->file('image')->store('uploads','public');
-                $imageFit = Image::make(public_path("storage/{$image}"))->fit(200,200);
-                $imageFit->save();
-                array_push($img_arr, ['image' => $image]);
+               $image = $request->file('image');
+               $name = $user->name.'_'.time();
+               $folder = '/uploads/images/';
+               $filePath = $folder . $name . '.' . $image->getClientOriginalExtension();
+               $avatarFilePath = $folder. 'avatar/' . $name . '.' . $image->getClientOriginalExtension();
 
-                if($this->checkImage($user->profile->avatar)){
-                    File::delete(storage_path('app/public/'. $user->profile->avatar));
-                }
-
-                $avatar = $request->file('image')->store('avatar','public');
-                $avatarFit = Image::make(public_path("storage/{$avatar}"))->fit(50,50);
-                $avatarFit->save();
-                array_push($img_arr, ['avatar' => $avatar]);
+               $this->uploadUserProfile($user,$image,$folder,'public', $name);
+               array_push($img_arr, ['image' => $filePath]);
+               array_push($img_arr, ['avatar' => $avatarFilePath]);
             }
 
             $user->update([
