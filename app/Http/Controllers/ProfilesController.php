@@ -52,22 +52,12 @@ class ProfilesController extends Controller
         foreach($this->syncRelatedModels as $index => $syncRelatedModel)
         {
             $request->validated();
-            
+
             if($request->get('action') == $index)
             {
                 $user->$syncRelatedModel($request);
                 return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
             }
         }
-        // if($request->get('action') == 'profile')
-        // {
-        //     $user->updateProfileImage($request);
-        //     return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
-
-        // }elseif($request->get('action') == 'details')
-        // {
-        //     $user->updateProfileDetails($request);
-        //     return redirect()->route('profile.edit',$user->id)->withSuccess('Profile updated successfully!');
-        // }
     }
 }

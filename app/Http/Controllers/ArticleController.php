@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 use App\Article;
 use Intervention\Image\Facades\Image;
 use File;
@@ -37,24 +37,15 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $request->validate([
-            'title'             =>  'required|min:4|max:50',
-            'body'              =>  'required|min:4',
-            'featured_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=255,max_width=1000'
-        ]);
+        $request->validated();
+        
+        $article = new Article();
+        
+        $article->createOrUpdateArticle($request);
 
-        $featured_image = $request->file('featured_image')->store('articles','public');
-        $image = $request->file('featured_image')->store('articles/thumbnail', 'public');
-        $thumbnail = Image::make(public_path("storage/{$image}"))->fit(400,400);
-        $thumbnail->save();
 
-        Article::create(array_merge(
-            $request->except('_token', 'featured_image'),
-            // ['featured_image' => $featured_image],
-            // ['thumbnail' => $image]
-        ));
         return redirect()->route('articles.index');
     }
 
@@ -89,7 +80,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validated();
+        
+        $article->createOrUpdateArticle($request);
     }
 
     /**

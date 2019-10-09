@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Faq;
-use Illuminate\Http\Request;
+use App\Http\Requests\FaqRequest;
 
 class FaqController extends Controller
 {
@@ -35,12 +35,9 @@ class FaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FaqRequest $request)
     {
-        $data = $request->validate([
-            'title'     =>  'required|min:5|max:80',
-            'body'      =>  'required|min:2'
-        ]);
+        $data = $request->validated();
 
         Faq::create($data);
 
@@ -78,10 +75,7 @@ class FaqController extends Controller
      */
     public function update(Request $request, Faq $faq)
     {
-        $data = $request->validate([
-            'title' =>  'required|min:5|max:80',
-            'body'  =>  'required|min:2'
-        ]);
+        $data = $request->validated();
 
         $faq->update($data);
 

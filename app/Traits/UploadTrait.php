@@ -6,6 +6,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\User;
+use App\Article;
 use App\Profile;
 use File;
 
@@ -37,6 +38,21 @@ trait UploadTrait
 
         $imageFit = Image::make(public_path($avatar))->fit(200,200);
         $imageFit->save();
+
+        return $file;
+    }
+
+    public function uploadArticleFeaturedImage(Article $article, UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    {
+        $name = !is_null($filename) ? $filename : str_random(25);
+
+        $thumbnailFolder = $folder.'/thumbnail';
+        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+        $thumbnail = $uploadedFile->storeAs($thumbnailFolder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+
+        $makeThumbnail = Image::make(public_path($thumbnail))->fit(400,400);
+
+        $makeThumbnail->save();
 
         return $file;
     }
