@@ -29,7 +29,7 @@
                                         <h5 class="mt-2">{{ $user->name }}</h5>
                                         <div class="text-fade text-sm"><span class="m-r">Senior Industrial Designer</span>
                                             <small>
-                                                <i class="fa fa-map-marker mr-2"></i>London, UK
+                                                <i class="fa fa-map-marker mr-2"></i>{{ ucfirst($user->profile->address) }}
                                             </small>
                                         </div>
                                     </div>
@@ -119,7 +119,8 @@
                                     </div>
                                     <div>
                                         <small class="text-muted">Bio</small>
-                                        <div class="my-2">Nulla feugiat semper pretium, in amet scelerisque massa scelerisque netus hac enim diam arcu tempus enim aenean commodo tortor elit adipiscing odio faucibus pellentesque vel et a tincidunt metus, rhoncus diam auctor nulla proin turpis ut neque, laoreet euismod faucibus arcu lacus vitae ac at tellus commodo lectus ultrices tellus felis nisl non, turpis at eu eros, turpis id orci</div>
+                                        <div class="my-2">
+                                            {{ ucfirst($user->profile->about) }}</div>
                                     </div>
                                 </div>
                             </div>

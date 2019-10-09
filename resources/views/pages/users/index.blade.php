@@ -87,7 +87,7 @@
                                     <a href="{{ route('users.show', $user->id) }}">
                                         <span class="w-40 avatar" data-toggle-class="loading">
                                             <span class="avatar-status on b-white avatar-right"></span>
-                                        <img src="/storage/{{ $user->profile->avatar }}" alt=".">
+                                        <img src="{{ $user->profile->avatar }}" alt=".">
                                         </span>
                                     </a>
                                 </div>

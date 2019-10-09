@@ -117,14 +117,16 @@
                         </div>
                     </div>
                     <div class="collapse p-4" id="c_4">
-                        <form role="form">
+                        <form role="form" action="{{ route('profile.update', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label>Adress</label>
-                                <input type="text" name="address" class="form-control">
+                                <input type="text" name="address" class="form-control" value="{{ old('address') ?? $user->profile->address  }}">
                             </div>
                             <div class="form-group">
                                 <label>About</label>
-                                <textarea name="about" id="" cols="20" rows="3" class="form-control"></textarea>
+                                <textarea name="about" id="" cols="20" rows="3" class="form-control"> {{ old('about') ?? $user->profile->about }}</textarea>
                             </div>
                             <button type="submit" name="action" value="details" class="btn btn-primary mt-2">Update</button>
                         </form>

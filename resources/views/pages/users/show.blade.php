@@ -24,7 +24,7 @@
                 <div class="p-4 d-sm-flex no-shrink b-b">
                     <div>
                         <a href="#" class="avatar w-96">
-                            <img src="/storage/{{ $user->profile->image }}" alt=".">
+                            <img src="{{ $user->profile->image }}" alt=".">
                         </a>
                     </div>
                     <div class="px-sm-4 my-3 my-sm-0 flex">
