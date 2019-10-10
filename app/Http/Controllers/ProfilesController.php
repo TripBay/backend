@@ -41,6 +41,8 @@ class ProfilesController extends Controller
      * @param  int  Profile $profile
      * @return \Illuminate\Http\Response
      */
+
+     // Returns array of actions associated with its corresponding functions
     protected $syncRelatedModels = [
         'profile'   =>  'updateProfileImage',
         'details'   =>  'updateProfileDetails'

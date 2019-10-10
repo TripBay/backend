@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Profiles;
+namespace App\Http\Resources\Faqs;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ProfilesResource extends ResourceCollection
+class FaqsResource extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,9 +15,8 @@ class ProfilesResource extends ResourceCollection
     public function toArray($request)
     {
         // return parent::toArray($request);
-
         return [
-            'data' => ProfileResource::collection($this->collection)
+            'data' => FaqResource::collection($this->collection)
         ];
     }
 }

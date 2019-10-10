@@ -9,3 +9,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('users', 'Api\UsersController')->only(['index', 'show']);
 Route::resource('accounts', 'Api\AccountsController');
 Route::resource('profiles', 'Api\ProfilesController');
+Route::resource('faqs', 'Api\FaqsController');
+Route::resource('articles', 'Api\ArticlesController');
