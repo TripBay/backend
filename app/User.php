@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\UploadTrait;
+use App\Traits\LockableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,8 +12,7 @@ class User extends Authenticatable
 {
     const ADMIN_TYPE = 1; //admin
     const DEFAULT_TYPE = 2; //user
-    use Notifiable;
-    use UploadTrait;
+    use Notifiable, UploadTrait, LockableTrait;
 
     public function profile()
     {

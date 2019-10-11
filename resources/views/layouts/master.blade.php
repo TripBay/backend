@@ -5,7 +5,9 @@
 
     <body class="layout-row">
         @if(Request::routeIs(['login','reset']))
-        @yield('session')
+            @yield('session')
+        @elseif(Request::routeIs(['login.locked', 'login.unlock']))
+            @yield('lock')
         @else
             <!-- ############ Aside START-->
             @include('partials.sidebar')
