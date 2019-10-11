@@ -14,7 +14,7 @@ class AddLockoutTimeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('lockout_time')->default(2)->after('email');
+            $table->integer('lockout_time')->default(5)->after('email');
         });
     }
 
