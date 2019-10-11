@@ -12,23 +12,20 @@ use File;
 
 trait UploadTrait
 {
-    public function checkImage($image)
+    public function checkImage($image, $model)
     {
-        return Profile::exists(public_path($image));
-    }
-    public function checkAvatar($avatar)
-    {
-        return Profile::exists(public_path($avatar));
+        $exist = $model->exists(public_path($image));
+        if($exist)
+        {
+            File::delete(public_path($image));
+        }
     }
 
     public function uploadUserProfile(User $user, UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
     {
-        if($this->checkImage($user->profile->image)){
-            File::delete(public_path($user->profile->image));
-        }
-        if($this->checkAvatar($user->profile->avatar)){
-            File::delete(public_path($user->profile->avatar));
-        }
+
+        $this->checkImage($user->profile->image, $user);
+        $this->checkImage($user->profile->avatar, $user);
 
         $name = !is_null($filename) ? $filename : str_random(25);
         $avatarFolder = $folder.'/avatar';
@@ -44,6 +41,9 @@ trait UploadTrait
 
     public function uploadArticleFeaturedImage(Article $article, UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
     {
+        $this->checkImage($article->featured_image, $article);
+        $this->checkImage($article->thumbnail, $article);
+
         $name = !is_null($filename) ? $filename : str_random(25);
 
         $thumbnailFolder = $folder.'/thumbnail';

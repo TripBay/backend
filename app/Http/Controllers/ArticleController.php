@@ -68,7 +68,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('pages.articles.edit', compact('article'));
     }
 
     /**
@@ -78,11 +78,13 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $request->validated();
         
         $article->createOrUpdateArticle($request);
+
+        return redirect()->route('articles.index')->withSuccess('Article successfully updated!');
     }
 
     /**
@@ -93,6 +95,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index')->withSuccess('Article successfully deleted!');
+
     }
 }

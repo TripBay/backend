@@ -21,17 +21,20 @@ class Article extends Model
             $folder = '/uploads/articles/';
             $filePath = $folder . $name . '.' . $image->getClientOriginalExtension();
             $thumbnailFilePath = $folder. 'thumbnails/' . $name . '.' . $image->getClientOriginalExtension();
+
+            $this->uploadArticleFeaturedImage($this,$image,$folder,'public', $name);
+
             array_push($img_arr, ['featured_image' => $filePath]);
             array_push($img_arr, ['thumbnail' => $thumbnailFilePath]);
         }
-
-        $this->uploadArticleFeaturedImage($this,$image,$folder,'public', $name);
-        
-        $this->firstOrCreate(array_merge(
-            ['title' =>  $request->title],
-            ['body'  =>  $request->body],
-            $img_arr[0] ?? [],
-            $img_arr[1] ?? []
-        ));
+        $this->updateOrCreate(
+            ['id' => $request->id],
+            array_merge([
+                'title' => $request->title,
+                'body'  => $request->body
+                ],
+                $img_arr[0] ?? [],
+                $img_arr[1] ?? []
+            ));
     }
 }

@@ -58,13 +58,17 @@
                                             <a class="dropdown-item" href="#">
                                                 See detail
                                             </a>
-                                            <a class="dropdown-item edit">
+                                            <a class="dropdown-item edit" href="{{ route('articles.edit', $article->id) }}">
                                                 Edit
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item trash">
-                                                Delete item
-                                            </a>
+                                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>

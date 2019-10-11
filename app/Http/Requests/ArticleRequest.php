@@ -8,17 +8,17 @@ class ArticleRequest extends FormRequest
 {
     protected $rules = [
         'POST' => [ 
-            'title'             =>  'required|min:4|max:50',
+            'title'             =>  'required|min:4|max:90',
             'body'              =>  'required|min:4',
             'featured_image'    =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=255,max_width=1000'
         ],
         'PUT' => [
-            'title'             =>  'required|min:4|max:50',
+            'title'             =>  'required|min:4|max:90',
             'body'              =>  'required|min:4',
             'featured_image'    =>  'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=255,max_width=1000'
         ],
         'PATCH' => [
-            'title'             =>  'required|min:4|max:50',
+            'title'             =>  'required|min:4|max:90',
             'body'              =>  'required|min:4',
             'featured_image'    =>  'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=255,max_width=1000'
         ],
