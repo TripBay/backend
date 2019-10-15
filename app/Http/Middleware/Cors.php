@@ -18,7 +18,7 @@ class Cors
         $response = $next($request);
         $response->header('Access-Control-Allow-Methods', 'HEAD, GET, POST, PUT, DELETE');
         $response->header('Access-Control-Allow-Headers', $request->header('Access-Control-Request-Headers'));
-        $response->header('Access-Control-Allow-Origin', '{{ env("HTTP_ORIGIN") }}');
+        $response->header('Access-Control-Allow-Origin', 'http://localhost:4200');
         return $response;
     }
 }
