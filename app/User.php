@@ -7,12 +7,29 @@ use App\Traits\UploadTrait;
 use App\Traits\LockableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     const ADMIN_TYPE = 1; //admin
     const DEFAULT_TYPE = 2; //user
     use Notifiable, UploadTrait, LockableTrait;
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    public function setPasswordAttribute($password)
+    {
+        if ( !empty($password) ) {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
 
     public function profile()
     {

@@ -12,4 +12,9 @@ Route::group(['middleware' => 'cors'], function(){
     Route::resource('profiles', 'Api\ProfilesController');
     Route::resource('faqs', 'Api\FaqsController');
     Route::resource('articles', 'Api\ArticlesController');
+
+    Route::post('register', 'Api\AuthController@register');
+
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('logout', 'Api\AuthController@logout');
 });
