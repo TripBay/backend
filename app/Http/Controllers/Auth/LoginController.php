@@ -37,12 +37,15 @@ class LoginController extends Controller
 
     public function locked()
     {
+        
         if(!session('lock-expires-at')){
             return redirect()->route('dashboard');
         }
-
-        if(session('lock-expires-at') > now()){
-            return redirect('/');
+        if(!auth())
+        {
+            if(session('lock-expires-at') > now()){
+                return redirect('/');
+            }
         }
 
         return view('auth.locked');

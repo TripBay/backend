@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApiUserRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
 
     public function register(ApiUserRequest $request)
     {
@@ -36,7 +40,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
         
         try {
-            if (! $token = auth()->attempt($credentials)) {
+            if (!$token = $this->guard()->attempt($credentials)) {
                 if($this->checkIfEmailExistsFromUsers($email))
                 {
                     return response()->json(['error' => 'The Password you\'ve entered is incorrect! '], 400);
@@ -52,7 +56,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->logout();
+        $this->guard()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -62,7 +66,17 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth()->factory()->getTTL() * 60
+            'expires_in'   => $this->guard()->factory()->getTTL() * 60
         ]);
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\Guard
+     */
+    public function guard()
+    {
+        return Auth::guard('api');
     }
 }
