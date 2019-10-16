@@ -25,17 +25,23 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function checkIfEmailExistsFromUsers($email)
+    {
+        return User::whereEmail($email)->exists();
+    }
+
     public function login()
     {
+        $email = request()->email;
         $credentials = request(['email', 'password']);
-
-        // if (! $token = auth()->attempt($credentials)) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-
+        
         try {
             if (! $token = auth()->attempt($credentials)) {
-                return response()->json(['error' => 'Invalid Credentials'], 400);
+                if($this->checkIfEmailExistsFromUsers($email))
+                {
+                    return response()->json(['error' => 'The Password you\'ve entered is incorrect! '], 400);
+                }
+                return response()->json(['error' => 'Email doesn\'t match any account!'], 400);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'Could not create token'], 500);
