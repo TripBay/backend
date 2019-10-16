@@ -5,6 +5,7 @@ namespace App\Http\Resources\ModelsRelationship;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Accounts\AccountResource;
 use App\Http\Resources\Profiles\ProfileResource;
+use App\Http\Resources\Roles\RoleResource;
 
 class UsersRelationshipResource extends JsonResource
 {
@@ -24,6 +25,9 @@ class UsersRelationshipResource extends JsonResource
             ],
             'profile' => [
                 'data' => new ProfileResource($this->profile)
+            ],
+            'role' => [
+                'data' => new RoleResource($this->role)
             ]
         ];
     }

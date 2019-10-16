@@ -11,6 +11,7 @@ Route::group(['middleware' => ['cors']], function(){
     Route::resource('users', 'Api\UsersController')->only(['index', 'show']);
     Route::resource('accounts', 'Api\AccountsController');
     Route::resource('profiles', 'Api\ProfilesController');
+    Route::resource('roles', 'Api\RolesController');
     Route::resource('faqs', 'Api\FaqsController');
     Route::resource('articles', 'Api\ArticlesController');
 

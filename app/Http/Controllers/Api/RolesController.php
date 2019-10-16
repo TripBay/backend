@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Users\UsersResource;
-use App\Http\Resources\Users\UserResource;
-use App\User;
+use App\Http\Resources\Roles\RoleResource;
+use App\Http\Resources\Roles\RolesResource;
 use Illuminate\Http\Request;
+use App\Role;
 
-class UsersController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with(['account', 'profile', 'role'])->paginate(15);
-        return new UsersResource($users);
+        $roles = Role::paginate(15);
+
+        return new RolesResource($roles);
     }
 
     /**
@@ -39,7 +40,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -48,10 +49,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Role $role)
     {
-        UserResource::withoutWrapping();
-        return new UserResource($user);
+        RoleResource::withoutWrapping();
+        return new RoleResource($role);
     }
 
     /**
