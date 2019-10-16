@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     public function register(ApiUserRequest $request)
@@ -24,9 +24,15 @@ class AuthController extends Controller
             'password'  => $request->password,
          ]);
 
-        $token = auth()->login($user);
+        $token = $this->guard()->login($user);
+        // $response = [
+        //     'token' => $this->respondWithToken($token),
+        //     'success' => response()->json(['success' => 'Account successfully registered!'])
+        // ];
 
-        return $this->respondWithToken($token);
+        $response = response()->json(['success' => 'Account successfully registered!']);
+        
+        return $response;
     }
 
     public function checkIfEmailExistsFromUsers($email)
@@ -65,7 +71,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
-            'role_id' => $this->guard()->user()->role->id,
+            'role_id' => $this->guard()->user()->role->id ?? 2, //After registration gets role id, if none, default to 2 => 'USERS'
             'token_type'   => 'bearer',
             'expires_in'   => $this->guard()->factory()->getTTL() * 60
         ]);
