@@ -24,12 +24,6 @@ class AuthController extends Controller
             'password'  => $request->password,
          ]);
 
-        $token = $this->guard()->login($user);
-        // $response = [
-        //     'token' => $this->respondWithToken($token),
-        //     'success' => response()->json(['success' => 'Account successfully registered!'], 200)
-        // ];
-
         $response = response()->json(['success' => 'Account successfully registered!'], 200);
         
         return $response;
@@ -72,7 +66,9 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'id'    => $this->guard()->user()->id,
-            'role_id' => $this->guard()->user()->role->id ?? 2, //After registration gets role id, if none, default to 2 => 'USERS'
+            'name'    => $this->guard()->user()->name,
+            'role_name' =>  $this->guard()->user()->role->name,
+            'role_id' => $this->guard()->user()->role->id,
             'token_type'   => 'bearer',
             'expires_in'   => $this->guard()->factory()->getTTL() * 60
         ]);

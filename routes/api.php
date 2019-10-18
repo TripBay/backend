@@ -19,3 +19,8 @@ Route::group(['middleware' => ['cors']], function(){
     Route::post('login', 'Api\AuthController@login');
     Route::post('logout', 'Api\AuthController@logout');
 });
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found. If error persists, contact info@tripbay.com'], 404);
+});
